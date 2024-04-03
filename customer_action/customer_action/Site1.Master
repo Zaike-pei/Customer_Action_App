@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="customer_action.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>顧客対応管理システム</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 800px;
+        }
+        .auto-style2 {
+            width: 778px;
+        }
+    </style>
+    <link href="StyleSheet1.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table cellpadding="0" cellspacing="0" class="auto-style1">
+                <tr>
+                    <td class="auto-style2">
+                        <img alt="" src="images/title.gif" /></td>
+                    <td>
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/back.gif" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
