@@ -26,7 +26,9 @@
                     <td class="auto-style2">
                         <img alt="" src="images/title.gif" /></td>
                     <td>
-                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/back.gif" />
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/back.gif" PostBackUrl="~/Menu.aspx" />
+                        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True">
+                        </asp:ScriptManager>
                     </td>
                 </tr>
             </table>

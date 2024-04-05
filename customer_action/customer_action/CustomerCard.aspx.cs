@@ -13,8 +13,20 @@ namespace customer_action
 {
     public partial class CustomerCard : Page
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (Session["StaffID"] == null)
+            {
+                // ユーザー認証されていない場合ログオン画面に遷移
+                Response.Redirect("Logon.aspx", false);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // webページをキャッシュしないように設定
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
             // ポストバックかどうかの判定
             if (!IsPostBack)
             {
@@ -81,11 +93,11 @@ namespace customer_action
                     // sqlステートメントの実行結果を取得
                     Object result = command.ExecuteScalar();
 
-                    // 結果を正しく取得できたら
-                    if (result != null)
-                    {
-                        customer_id = (int)result;
-                    }
+                        // 結果を正しく取得できたら
+                        if (result != null)
+                        {
+                            customer_id = (int)result;
+                        }
                     
                 }
             }
@@ -107,7 +119,7 @@ namespace customer_action
             if(e.CommandName == "Cancel" && FormView1.CurrentMode == FormViewMode.Insert)
             {
                 // コマンド名がCancelである且つ、挿入モードの時はCustomerList.aspxにリダイレクト
-                Response.Redirect("CustomerList.aspx");
+                Response.Redirect("CustomerList.aspx", false);
             }
         }
 

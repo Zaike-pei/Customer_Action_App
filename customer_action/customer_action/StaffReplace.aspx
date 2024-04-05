@@ -1,4 +1,4 @@
-﻿<%@ Page Title="営業担当者の置換" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="StaffReplace.aspx.cs" Inherits="customer_action.StaffReplace" %>
+﻿<%@ Page Title="営業担当者の置換" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="StaffReplace.aspx.cs" Inherits="customer_action.StaffReplace" Trace="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style3 {
