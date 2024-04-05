@@ -1,4 +1,5 @@
-﻿<%@ Page Title="顧客情報" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustomerCard.aspx.cs" Inherits="customer_action.CustomerCard" %>
+﻿<%@ Page Title="顧客情報" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustomerCard.aspx.cs" Inherits="customer_action.CustomerCard" Trace="true" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style3 {
@@ -80,6 +81,10 @@
             width: 267px;
             height: 22px;
         }
+        .watermarkStyle {
+            color: darkgray;
+            background-color: lightcyan;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -152,6 +157,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">顧客名カナ</td>
                     <td class="auto-style20">
                         <asp:TextBox ID="customer_kanaTextBox" runat="server" CssClass="imeOn" Text='<%# Bind("customer_kana") %>' Width="240px" />
+                        <ajaxToolkit:TextBoxWatermarkExtender ID="customer_kanaTextBox_TextBoxWatermarkExtender" runat="server" BehaviorID="customer_kanaTextBox_TextBoxWatermarkExtender" TargetControlID="customer_kanaTextBox" WatermarkCssClass="watermarkStyle" WatermarkText="全角カナで入力" />
                         <br />
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="customer_kanaTextBox" Display="Dynamic" ErrorMessage="必須入力です" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="customer_kanaTextBox" Display="Dynamic" ErrorMessage="２０文字以内で入力してください" ValidationExpression=".{0,20}" ForeColor="Red"></asp:RegularExpressionValidator>
@@ -159,6 +165,8 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">初回訪問日</td>
                     <td class="auto-style20">
                         <asp:TextBox ID="first_action_dateTextBox" runat="server" CssClass="imeOff" Text='<%# Bind("first_action_date", "{0:yyyy/MM/dd}") %>' Width="80px" />
+                        <ajaxToolkit:TextBoxWatermarkExtender ID="first_action_dateTextBox_TextBoxWatermarkExtender" runat="server" BehaviorID="first_action_dateTextBox_TextBoxWatermarkExtender" TargetControlID="first_action_dateTextBox" WatermarkCssClass="watermarkStyle" WatermarkText="yyyy/mm/ddで入力" />
+                        <ajaxToolkit:CalendarExtender ID="first_action_dateTextBox_CalendarExtender" runat="server" BehaviorID="first_action_dateTextBox_CalendarExtender" Format="yyyy/DD/mm" TargetControlID="first_action_dateTextBox" />
                         <br />
                         <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="first_action_dateTextBox" Display="Dynamic" ErrorMessage="「yyyy/mm/dd」の書式で入力してください" ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                     </td>
@@ -198,6 +206,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">郵便番号</td>
                     <td class="auto-style18" colspan="3">
                         <asp:TextBox ID="zipcodeTextBox" runat="server" CssClass="imeOn" Text='<%# Bind("zipcode") %>' Width="80px" />
+                        <ajaxToolkit:FilteredTextBoxExtender ID="zipcodeTextBox_FilteredTextBoxExtender" runat="server" BehaviorID="zipcodeTextBox_FilteredTextBoxExtender" FilterType="Custom, Numbers" InvalidChars="-" TargetControlID="zipcodeTextBox" />
                         <br />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="zipcodeTextBox" ErrorMessage="「000-0000」の書式で入力してください" ValidationExpression="\d{3}(-(\d{4}|\d{2}))?" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
                     </td>
@@ -214,6 +223,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="tableStyle1">TEL</td>
                     <td class="auto-style10" colspan="3">
                         <asp:TextBox ID="telTextBox" runat="server" CssClass="imeOff" Text='<%# Bind("tel") %>' Width="150px" />
+                        <ajaxToolkit:FilteredTextBoxExtender ID="telTextBox_FilteredTextBoxExtender" runat="server" BehaviorID="telTextBox_FilteredTextBoxExtender" FilterType="Custom, Numbers" InvalidChars="-" TargetControlID="telTextBox" />
                         <br />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="telTextBox" ErrorMessage="２０文字以内で入力してください" ValidationExpression=".{0,20}" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
                     </td>
@@ -250,6 +260,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">顧客名カナ</td>
                     <td class="auto-style20">
                         <asp:TextBox ID="customer_kanaTextBox" runat="server" CssClass="imeOn" Text='<%# Bind("customer_kana") %>' Width="240px" />
+                        <ajaxToolkit:TextBoxWatermarkExtender ID="customer_kanaTextBox_TextBoxWatermarkExtender" runat="server" BehaviorID="customer_kanaTextBox_TextBoxWatermarkExtender" TargetControlID="customer_kanaTextBox" WatermarkCssClass="watermarkStyle" WatermarkText="全角カナで入力" />
                         <br />
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="customer_kanaTextBox" Display="Dynamic" ErrorMessage="必須入力です" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
@@ -258,6 +269,8 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">初回訪問日</td>
                     <td class="auto-style20">
                         <asp:TextBox ID="first_action_dateTextBox" runat="server" CssClass="imeOff" Text='<%# Bind("first_action_date", "{0:yyyy/MM/dd}") %>' Width="80px" />
+                        <ajaxToolkit:TextBoxWatermarkExtender ID="first_action_dateTextBox_TextBoxWatermarkExtender" runat="server" BehaviorID="first_action_dateTextBox_TextBoxWatermarkExtender" TargetControlID="first_action_dateTextBox" WatermarkCssClass="watermarkStyle" WatermarkText="yyyy/mm/dd" />
+                        <ajaxToolkit:CalendarExtender ID="first_action_dateTextBox_CalendarExtender" runat="server" BehaviorID="first_action_dateTextBox_CalendarExtender" Format="yyyy/MM/dd" TargetControlID="first_action_dateTextBox" />
                         <br />
                         <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="first_action_dateTextBox" ErrorMessage="「yyyy/mm/dd」の書式で入力してください" ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                     </td>
@@ -298,6 +311,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">郵便番号</td>
                     <td class="auto-style18" colspan="3">
                         <asp:TextBox ID="zipcodeTextBox" runat="server" CssClass="imeOn" Text='<%# Bind("zipcode") %>' Width="80px" />
+                        <ajaxToolkit:FilteredTextBoxExtender ID="zipcodeTextBox_FilteredTextBoxExtender" runat="server" BehaviorID="zipcodeTextBox_FilteredTextBoxExtender" FilterType="Custom, Numbers" InvalidChars="-" TargetControlID="zipcodeTextBox" />
                         <br />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator12" runat="server" ControlToValidate="zipcodeTextBox" ErrorMessage="「000-0000」の書式で入力して下さい" ValidationExpression="\d{3}(-(\d{4}|\d{2}))?" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
                     </td>
@@ -314,6 +328,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
                     <td class="auto-style19">TEL</td>
                     <td class="auto-style18" colspan="3">
                         <asp:TextBox ID="telTextBox" runat="server" CssClass="imeOff" Text='<%# Bind("tel") %>' Width="150px" />
+                        <ajaxToolkit:FilteredTextBoxExtender ID="telTextBox_FilteredTextBoxExtender" runat="server" BehaviorID="telTextBox_FilteredTextBoxExtender" FilterType="Custom, Numbers" InvalidChars="-" TargetControlID="telTextBox" />
                         <br />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator14" runat="server" ControlToValidate="telTextBox" ErrorMessage="２０文字以内で入力してください" ValidationExpression=".{0,20}" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
                     </td>
