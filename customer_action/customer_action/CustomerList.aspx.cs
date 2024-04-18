@@ -24,5 +24,22 @@ namespace customer_action
             // webページをキャッシュしないように設定
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
         }
+
+        protected void FilterButton_Click(object sender, EventArgs e)
+        {
+            if (MyCustomerCheckBox.Checked)
+            {
+                GridView1.DataSourceID = SqlDataSource2.ID;
+            }
+            else
+            {
+                GridView1.DataSourceID = SqlDataSource1.ID;
+            }
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

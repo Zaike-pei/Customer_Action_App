@@ -1,4 +1,4 @@
-﻿<%@ Page Title="顧客情報" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustomerCard.aspx.cs" Inherits="customer_action.CustomerCard" Trace="true" %>
+﻿<%@ Page Title="顧客情報" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustomerCard.aspx.cs" Inherits="customer_action.CustomerCard" Trace="false" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -127,8 +127,6 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
             <asp:Parameter Name="staffID" Type="Int32" />
             <asp:Parameter Name="first_action_date" Type="DateTime" />
             <asp:Parameter Name="memo" Type="String" />
-            <asp:Parameter Name="input_date" Type="DateTime" />
-            <asp:Parameter Name="input_staff_name" Type="String" />
             <asp:Parameter Name="update_date" Type="DateTime" />
             <asp:Parameter Name="update_staff_name" Type="String" />
             <asp:Parameter Name="delete_flag" Type="Boolean" />
@@ -137,7 +135,17 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource_tb_company" runat="server" ConnectionString="<%$ ConnectionStrings:customer_actionConnectionString %>" SelectCommand="SELECT * FROM [tbl_company]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource_tb_staff" runat="server" ConnectionString="<%$ ConnectionStrings:customer_actionConnectionString %>" SelectCommand="SELECT * FROM [tbl_staff]"></asp:SqlDataSource>
-    <asp:FormView ID="FormView1" runat="server" DataKeyNames="customerID" DataSourceID="SqlDataSource1" OnPageIndexChanging="FormView1_PageIndexChanging" OnItemInserting="FormView1_ItemInserting" OnItemUpdating="FormView1_ItemUpdating" OnItemCommand="FormView1_ItemCommand">
+    <asp:SqlDataSource ID="SqlDataSource_action" runat="server" ConnectionString="<%$ ConnectionStrings:customer_actionConnectionString %>" SelectCommand="Select act.ID, act.customerID, act.action_date, act.action_content, st.staff_name
+From tbl_action As act
+Left Join tbl_staff As st 
+On act.action_staffID = st.staffID
+Where act.customerID = @customerID
+Order by  act.action_date Desc">
+        <SelectParameters>
+            <asp:QueryStringParameter Name="customerID" QueryStringField="id" />
+        </SelectParameters>
+</asp:SqlDataSource>
+    <asp:FormView ID="FormView1" runat="server" DataKeyNames="customerID" DataSourceID="SqlDataSource1" OnPageIndexChanging="FormView1_PageIndexChanging" OnItemInserting="FormView1_ItemInserting" OnItemUpdating="FormView1_ItemUpdating" OnItemCommand="FormView1_ItemCommand" Height="246px">
         <EditItemTemplate>
             <br />
             <table class="auto-style3">
@@ -354,7 +362,7 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
 
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style15"></td>
+                    <td class="auto-style15">顧客情報</td>
                     <td class="auto-style14">最終更新日：<asp:Label ID="update_dateLabel" runat="server" Text='<%# Bind("update_date", "{0:d}") %>' />
                     </td>
                 </tr>
@@ -444,4 +452,33 @@ where customerID = @customerID" DeleteCommand="DELETE FROM [tbl_customer] WHERE 
             <br />
         </ItemTemplate>
     </asp:FormView>
+<table class="auto-style1">
+    <tr>
+        <td>営業報告履歴</td>
+    </tr>
+</table>
+<asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataSourceID="SqlDataSource_action" ForeColor="Black" GridLines="None" DataKeyNames="ID">
+    <AlternatingRowStyle BackColor="PaleGoldenrod" />
+    <Columns>
+        <asp:HyperLinkField DataNavigateUrlFields="id,customerid" DataNavigateUrlFormatString="ActionCard.aspx?id={0}&amp;customerid={1}" DataTextField="action_date" DataTextFormatString="{0:yyyy/MM/dd}" HeaderText="日付">
+        <ItemStyle Width="100px" />
+        </asp:HyperLinkField>
+        <asp:BoundField DataField="action_content" HeaderText="対応内容" SortExpression="action_content">
+        <ItemStyle Width="300px" />
+        </asp:BoundField>
+        <asp:BoundField DataField="staff_name" HeaderText="対応者" SortExpression="staff_name">
+        <ItemStyle Width="100px" />
+        </asp:BoundField>
+    </Columns>
+    <FooterStyle BackColor="Tan" />
+    <HeaderStyle BackColor="Tan" Font-Bold="True" />
+    <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+    <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+    <SortedAscendingCellStyle BackColor="#FAFAE7" />
+    <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+    <SortedDescendingCellStyle BackColor="#E1DB9C" />
+    <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+</asp:GridView>
+    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">新しい営業報告を登録する</asp:LinkButton>
+    <asp:Label ID="MessageLabel" runat="server" ForeColor="Red"></asp:Label>
 </asp:Content>

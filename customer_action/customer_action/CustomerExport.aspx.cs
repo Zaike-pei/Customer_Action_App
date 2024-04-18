@@ -19,6 +19,12 @@ namespace customer_action
                 // ユーザー認証されていない場合ログオン画面に遷移
                 Response.Redirect("Logon.aspx", false);
             }
+            // 管理者権限があるかのユーザー認証
+            if (!Convert.ToBoolean(Session["AdminFlag"]))
+            {
+                Session.Clear();
+                Response.Redirect("Logon.aspx", false);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

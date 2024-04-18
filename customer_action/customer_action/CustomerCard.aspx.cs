@@ -46,7 +46,7 @@ namespace customer_action
         {
             // 最終更新日時と最終更新者をセット
             e.NewValues["update_date"] = DateTime.Now;
-            e.NewValues["update_staff_name"] = "（ーーー）";
+            e.NewValues["update_staff_name"] = Session["StaffName"];
         }
 
         protected void FormView1_ItemInserting(object sender, FormViewInsertEventArgs e)
@@ -58,9 +58,9 @@ namespace customer_action
             {
                 e.Values["customerID"] = customerID;
                 e.Values["input_date"] = DateTime.Now;
-                e.Values["input_staff_name"] = "（ーーー）";
+                e.Values["input_staff_name"] = Session["StaffName"];
                 e.Values["update_date"] = DateTime.Now;
-                e.Values["update_staff_name"] = "（ーーー）";
+                e.Values["update_staff_name"] = Session["StaffName"];
             }
             else
             {
@@ -134,6 +134,86 @@ namespace customer_action
                     args.IsValid = true;
                 }
             }
+        }
+
+
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            // 営業報告IDを取得
+            int newActionID = GetActionID();
+
+            if (newActionID == -1)
+            {
+                MessageLabel.Text = "営業報告IDを取得出来ませんでした。データベースを確認してください。";
+                return;
+            }
+
+            // クエリの宣言
+            string queryString = "insert into tbl_action" +
+                " (ID, customerID, action_date, action_content, action_staffID)" +
+                " values(" + newActionID + ", " + Request.QueryString["id"] + ",'" + DateTime.Today + "', " +
+                "'新規営業報告データ'," + Session["StaffID"] + ")";
+
+            try
+            {
+                // 接続文字列の取得
+                string connectionString = ConfigurationManager.ConnectionStrings["customer_actionConnectionString"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(queryString, con))
+                    {
+                        con.Open();
+                        // コマンド実行
+                        command.ExecuteNonQuery();
+                        // グリッドビューを更新
+                        GridView1.DataBind();
+                        // 結果をメッセージで表示
+                        MessageLabel.Text = "新しいデータを追加しました。";
+                    }
+                }
+            }
+            catch(Exception err)
+            {
+                Console.WriteLine(err.Message);
+                MessageLabel.Text = "エラーが発生したため、処理を中止しました。<br />" + err.Message;
+            }
+        }
+
+        int GetActionID()
+        {
+            int actNum = -1;
+
+            try
+            {
+                // 接続文字列の取得
+                string connectionString = ConfigurationManager.ConnectionStrings["customer_actionConnectionString"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    // クエリを宣言
+                    string queryString = "select isnull(max(ID), 0)+1 from tbl_action";
+
+                    using (SqlCommand command = new SqlCommand(queryString, con))
+                    {
+                        con.Open();
+                        // コマンドを実行し値を取得
+                        Object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            actNum = Convert.ToInt32(result.ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+            }
+
+            return actNum;
         }
     }
 }

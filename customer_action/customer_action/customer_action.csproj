@@ -71,6 +71,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActionCard.aspx" />
+    <Content Include="ActionList.aspx" />
+    <Content Include="CompanyManage.aspx" />
     <Content Include="CustomerCard.aspx" />
     <Content Include="CustomerExport.aspx" />
     <Content Include="CustomerList.aspx" />
@@ -79,12 +82,34 @@
     <Content Include="images\title.gif" />
     <Content Include="Logon.aspx" />
     <Content Include="Menu.aspx" />
+    <Content Include="StaffManage.aspx" />
     <Content Include="StaffReplace.aspx" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionCard.aspx.cs">
+      <DependentUpon>ActionCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActionCard.aspx.designer.cs">
+      <DependentUpon>ActionCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActionList.aspx.cs">
+      <DependentUpon>ActionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActionList.aspx.designer.cs">
+      <DependentUpon>ActionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyManage.aspx.cs">
+      <DependentUpon>CompanyManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyManage.aspx.designer.cs">
+      <DependentUpon>CompanyManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomerCard.aspx.cs">
       <DependentUpon>CustomerCard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,6 +155,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="StaffManage.aspx.cs">
+      <DependentUpon>StaffManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StaffManage.aspx.designer.cs">
+      <DependentUpon>StaffManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="StaffReplace.aspx.cs">
       <DependentUpon>StaffReplace.aspx</DependentUpon>

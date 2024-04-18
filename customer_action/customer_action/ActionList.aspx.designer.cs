@@ -11,7 +11,7 @@ namespace customer_action
 {
 
 
-    public partial class CustomerCard
+    public partial class ActionList
     {
 
         /// <summary>
@@ -24,40 +24,49 @@ namespace customer_action
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// SqlDataSource_tb_company コントロール。
+        /// FirstDateTextBox コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_tb_company;
+        protected global::System.Web.UI.WebControls.TextBox FirstDateTextBox;
 
         /// <summary>
-        /// SqlDataSource_tb_staff コントロール。
+        /// FirstDateTextBox_CalendarExtender コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_tb_staff;
+        protected global::AjaxControlToolkit.CalendarExtender FirstDateTextBox_CalendarExtender;
 
         /// <summary>
-        /// SqlDataSource_action コントロール。
+        /// LastDateTextBox コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_action;
+        protected global::System.Web.UI.WebControls.TextBox LastDateTextBox;
 
         /// <summary>
-        /// FormView1 コントロール。
+        /// LastDateTextBox_CalendarExtender コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView FormView1;
+        protected global::AjaxControlToolkit.CalendarExtender LastDateTextBox_CalendarExtender;
+
+        /// <summary>
+        /// FilterButton コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FilterButton;
 
         /// <summary>
         /// GridView1 コントロール。
@@ -67,23 +76,5 @@ namespace customer_action
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-
-        /// <summary>
-        /// LinkButton1 コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-
-        /// <summary>
-        /// MessageLabel コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageLabel;
     }
 }

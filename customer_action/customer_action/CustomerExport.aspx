@@ -1,4 +1,4 @@
-﻿<%@ Page Title="顧客データのエクスポート" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustomerExport.aspx.cs" Inherits="customer_action.CustomerExport" Trace="true" %>
+﻿<%@ Page Title="顧客データのエクスポート" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CustomerExport.aspx.cs" Inherits="customer_action.CustomerExport" Trace="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style3 {

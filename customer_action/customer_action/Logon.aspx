@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ログオン" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="customer_action.Logon" Trace="true" %>
+﻿<%@ Page Title="ログオン" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="customer_action.Logon" Trace="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
     .auto-style3 {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="メニュー" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="customer_action.Menu" Trace="true" %>
+﻿<%@ Page Title="メニュー" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="customer_action.Menu" Trace="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
     .auto-style5 {
@@ -27,15 +27,15 @@
         </tr>
         <tr>
             <td class="auto-style6">
-                <asp:HyperLink ID="HyperLink2" runat="server">営業報告一覧 </asp:HyperLink>
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/ActionList.aspx">営業報告一覧 </asp:HyperLink>
             </td>
             <td class="auto-style6"></td>
         </tr>
         <tr>
-            <td>
-                <asp:HyperLink ID="HyperLink3" runat="server">会社マスター管理</asp:HyperLink>
+            <td class="auto-style6">
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/CompanyManage.aspx">会社マスター管理</asp:HyperLink>
             </td>
-            <td>&nbsp;</td>
+            <td class="auto-style6"></td>
         </tr>
         <tr>
             <td>
@@ -51,7 +51,7 @@
         </tr>
         <tr>
             <td>
-                <asp:HyperLink ID="HyperLink6" runat="server">スタッフマスター管理</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/StaffManage.aspx">スタッフマスター管理</asp:HyperLink>
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -72,14 +72,14 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>
-                <asp:HyperLink ID="HyperLink8" runat="server">営業報告一覧 </asp:HyperLink>
+            <td class="auto-style6">
+                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/ActionList.aspx">営業報告一覧 </asp:HyperLink>
             </td>
-            <td>&nbsp;</td>
+            <td class="auto-style6"></td>
         </tr>
         <tr>
             <td>
-                <asp:HyperLink ID="HyperLink9" runat="server">会社マスター管理</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl="~/CompanyManage.aspx">会社マスター管理</asp:HyperLink>
             </td>
             <td>&nbsp;</td>
         </tr>
