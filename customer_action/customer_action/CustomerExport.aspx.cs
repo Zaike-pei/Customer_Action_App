@@ -35,26 +35,38 @@ namespace customer_action
 
         protected void ExportButton_Click(object sender, EventArgs e)
         {
-            // カンマ区切りの
-            string csvString = MakeCSVData();
-            // BOMデータの作成
-            byte[] bom = new byte[3] { 0xef, 0xbb, 0xbf };
-            // 出力する既定のファイル名
-            const string csvfile = "customer.csv";
-
-            // クライアントに出力するバッファデータをクリア
-            Response.Clear();
-            // コンテンツタイプを指定
-            Response.ContentType = "application/octet-stream";
-            // HTTPヘッダーを指定
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + csvfile);
-            // BOM出力後、UTF-8のテキストファイルを出力する
-            Response.BinaryWrite(bom);
-            Response.BinaryWrite(Encoding.GetEncoding("UTF-8").GetBytes(csvString));
-
-            // 出力するファイルを終了する
-            //Response.End();
-            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            try {
+                // カンマ区切りのcsvデータ文字列を取得
+                string csvString = MakeCSVData();
+                // BOMデータの作成
+                byte[] bom = new byte[3] { 0xef, 0xbb, 0xbf };
+                // 出力する既定のファイル名
+                const string csvfile = "customer.csv";
+    
+                // クライアントに出力するバッファデータをクリア
+                Response.Clear();
+                // コンテンツタイプを指定
+                Response.ContentType = "application/octet-stream";
+                // HTTPヘッダーを指定
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + csvfile);
+                // BOM出力後、UTF-8のテキストファイルを出力する
+                Response.BinaryWrite(bom);
+                Response.BinaryWrite(Encoding.GetEncoding("UTF-8").GetBytes(csvString));
+    
+                // 出力するファイルを終了する
+                // ThreadAbortExceptionエラー発生
+                Response.End();
+                //HttpContext.Current.ApplicationInstance.CompleteRequest();
+            }
+            catch (ThreadAbortException)
+            {
+                System.Diagnostics.Debug.WriteLine("ThreadAbortExceptionが仕様上必ず発生します。利用上に問題なし。");
+            }
+            catch(Exception)
+            {
+                Response.Clear();
+                Response.Redirect("Logon.aspx", false);
+            }
         }
 
         string MakeCSVData()
